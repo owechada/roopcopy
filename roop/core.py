@@ -60,18 +60,13 @@ def parse_args() -> None:
     data = json.load(json_file)
 
  
-   source = data['source']
-   target = data['target']
- 
-
-
-
-
- 
-
-    roop.globals.source_path = args.source_path
-    roop.globals.target_path = args.target_path
-    roop.globals.output_path = normalize_output_path(roop.globals.source_path, roop.globals.target_path, args.output_path)
+    source = data['source']
+    target = data['target']
+    output= data['output']
+    
+    roop.globals.source_path = source
+    roop.globals.target_path = target
+    roop.globals.output_path = normalize_output_path(source, target, output)
     roop.globals.headless = roop.globals.source_path is not None and roop.globals.target_path is not None and roop.globals.output_path is not None
     roop.globals.frame_processors = args.frame_processor
     roop.globals.keep_fps = args.keep_fps
