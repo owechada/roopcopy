@@ -2,6 +2,7 @@
 
 import os
 import sys
+import json
 # single thread doubles cuda performance - needs to be set before torch import
 if any(arg.startswith('--execution-provider') for arg in sys.argv):
     os.environ['OMP_NUM_THREADS'] = '1'
@@ -50,6 +51,23 @@ def parse_args() -> None:
     program.add_argument('-v', '--version', action='version', version=f'{roop.metadata.name} {roop.metadata.version}')
 
     args = program.parse_args()
+
+
+    json_file_path = 'swapper.json'
+
+# Open and read the JSON file
+    with open(json_file_path, 'r') as json_file:
+    data = json.load(json_file)
+
+ 
+   source = data['source']
+   target = data['target']
+ 
+
+
+
+
+ 
 
     roop.globals.source_path = args.source_path
     roop.globals.target_path = args.target_path
